@@ -16,7 +16,7 @@ exports.deleteAllCompetitors = async (req, res) => {
     
     try{
         const userLoggedID = req.decoded.id;
-        await Users.deleteMany({role: 0, createdBy: userLoggedID}).exec();
+        await Competitors.deleteMany({createdBy: userLoggedID}).exec();
         return res.status(200).send("ALL COMPETITORS DELETED");      
         
     } catch (error) {
