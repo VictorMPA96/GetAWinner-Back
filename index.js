@@ -1,7 +1,8 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var userRoutes = require("./router/userRoutes");
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const userRoutes = require("./router/userRoutes");
+const mongoose = require('mongoose');
 
 
 app.use(bodyParser.json())
@@ -12,17 +13,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-const mongoose = require('mongoose');
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/getawinnerDB');
 }
-
 main().catch(err => console.log(err));
-
-
-
-
 
 app.use("/users/", userRoutes)
 
