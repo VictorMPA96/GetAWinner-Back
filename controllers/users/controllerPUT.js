@@ -44,6 +44,14 @@ exports.updateUser = async (req, res) => {
         }else if(role !== 1){
             return res.status(401).send("FORBIDDEN PARAM (ROLE)");
         }
+
+        if(request.createdOn || request.createdOn === undefined){
+            request.createdOn = getUser.createdOn;
+        }
+
+        if(request.updatedAt || request.updatedAt === undefined){
+            request.updatedAt = new Date();
+        }
     
         const updatedUser = await Users.findByIdAndUpdate(req.params.id, request);
         return res.status(200).json({oldUser: updatedUser});

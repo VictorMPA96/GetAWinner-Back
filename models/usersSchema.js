@@ -5,7 +5,8 @@ const usersSchema = new Schema(
     {
         username: String,
         password: String,
-        createdOn: Date, 
+        createdOn: Date,
+        updatedAt: Date,
         role: {type: Number, default: 0}
     },
     {

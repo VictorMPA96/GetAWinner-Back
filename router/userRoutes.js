@@ -1,6 +1,6 @@
 var express = require('express');
 var router  = express.Router();
-const middlewares = require("../middlewares/validateUser")
+const middlewares = require("../middlewares/validator");
 const controllerGET = require("../controllers/users/controllerGET");
 const controllerPOST = require("../controllers/users/controllerPOST");
 const controllerPUT = require("../controllers/users/controllerPUT");

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const userRoutes = require("./router/userRoutes");
+const competitorRoutes = require("./router/competitorRoutes");
 const mongoose = require('mongoose');
 
 
@@ -18,7 +19,8 @@ async function main() {
 }
 main().catch(err => console.log(err));
 
-app.use("/users/", userRoutes)
+app.use("/users/", userRoutes);
+app.use("/competitors/", competitorRoutes);
 
 app.listen(3000, () => {
     console.log("El servidor está inicializado en el puerto 3000");

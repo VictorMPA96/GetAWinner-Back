@@ -1,6 +1,19 @@
 const Users = require("../models/usersSchema");
 const jwt = require('jsonwebtoken');
 
+// Functions
+
+const paramIsEmpty = (req, res, next, text) => {
+    if(!req){
+        return res.status(400).send(text);
+    }
+
+    return next();
+}
+
+
+// Middlewares
+
 const isNotAuthenticated = async (req, res, next) => {
     const token = req.get("X-Session-Token")
     
@@ -38,24 +51,13 @@ const isInvalidRoleParam = (req, res, next) => {
     return next();
 }
 
-const usernameIsEmpty = (req, res, next) => {
-    if(!req.body.username){
-        return res.status(400).send("USERNAME PARAM IS EMPTY");
-    }
-
-    return next();
-}
-
-const passwordIsEmpty = (req, res, next) => {
-    if(!req.body.password){
-        return res.status(400).send("PASSWORD PARAM IS EMPTY");
-    }
-
-    return next();
-}
+const usernameIsEmpty = (req, res, next) => paramIsEmpty(req.body.username, res, next, "USERNAME PARAM IS EMPTY");
+const passwordIsEmpty = (req, res, next) => paramIsEmpty(req.body.password, res, next, "PASSWORD PARAM IS EMPTY");
+const competitorNameIsEmpty = (req, res, next) => paramIsEmpty(req.body.name, res, next, "NAME PARAM IS EMPTY");
 
 
 exports.isNotAuthenticated = isNotAuthenticated;
 exports.usernameIsEmpty = usernameIsEmpty;
 exports.passwordIsEmpty = passwordIsEmpty;
+exports.competitorNameIsEmpty = competitorNameIsEmpty;
 exports.isInvalidRoleParam = isInvalidRoleParam;
