@@ -3,9 +3,9 @@ const Competitors = require("../../models/competitorSchema");
 exports.deletCompetitorByID = async (req, res) => {
 
     try{
-        await Competitors.findByIdAndDelete(req.params.id).exec();
-        return res.status(200).send("COMPETITOR DELETED");       
-        
+        const response = await Competitors.findByIdAndDelete(req.params.id).exec();
+        return res.status(200).json({response: response, message: "COMPETITOR DELETED"});
+               
     } catch (error) {
         return res.sendStatus(500);
     }

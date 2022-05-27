@@ -45,7 +45,7 @@ exports.loginUser = async (req, res) => {
             const login = {
                 sub: moment().unix(),
                 idUser: user.id,
-                iat: moment().add(365, "days").unix()
+                iat: moment().add(10, "minutes").unix()
             }
             
             const token = jwt.sign(login, 'secretkey');   
