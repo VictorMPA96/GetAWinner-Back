@@ -22,7 +22,7 @@ exports.postUser = async (req, res) => {
         }
     
         const user = await Users.create(newUser);
-        return res.status(200).json(user);
+        return res.status(201).json(user);
 
     } catch (error) {
         return res.sendStatus(500);

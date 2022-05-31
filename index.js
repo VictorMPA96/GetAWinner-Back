@@ -3,22 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const userRoutes = require("./router/userRoutes");
 const competitorRoutes = require("./router/competitorRoutes");
-const mongoose = require('mongoose');
 const cors = require("cors");
+const { connectMongoose } = require('./connections/mongoDB-connection');
 
 app.use(cors());
 app.use(bodyParser.json())
-// Activacion de Cors para que cualquier cliente acceda a la API
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept", "*");
-  next();
-});
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/getawinnerDB');
-}
-main().catch(err => console.log(err));
+connectMongoose();
 
 app.use("/users/", userRoutes);
 app.use("/competitors/", competitorRoutes);
