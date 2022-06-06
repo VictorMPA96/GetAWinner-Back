@@ -15,7 +15,7 @@ const paramIsEmpty = (req, res, next, text) => {
 // Middlewares
 
 const isNotAuthenticated = async (req, res, next) => {
-    const token = req.get("X-Session-Token")
+    const token = req.get("X-Session-Token");
     
     if(!token){
         return res.status(401).send("'X-Session-Token' HEADER IS EMPTY");

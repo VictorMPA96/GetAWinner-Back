@@ -8,16 +8,16 @@ const controllerDELETE = require("../controllers/users/controllerDELETE");
 
 
 router.get('/', middlewares.isNotAuthenticated, controllerGET.getAllUsers);
-router.get('/:id', middlewares.isNotAuthenticated, controllerGET.getUserByID);
-
 router.post('/', middlewares.usernameIsEmpty, middlewares.passwordIsEmpty, controllerPOST.postUser);
-router.post('/register', middlewares.isInvalidRoleParam, middlewares.usernameIsEmpty, middlewares.passwordIsEmpty, controllerPOST.postUser);
-router.post('/login', middlewares.usernameIsEmpty, middlewares.passwordIsEmpty, controllerPOST.loginUser);
-
-router.put('/:id', middlewares.isNotAuthenticated, controllerPUT.updateUser);
-
 router.delete('/', middlewares.isNotAuthenticated, controllerDELETE.deleteAllUsers);
+
+
+router.get('/:id', middlewares.isNotAuthenticated, controllerGET.getUserByID);
+router.put('/:id', middlewares.isNotAuthenticated, controllerPUT.updateUser);
 router.delete('/:id', middlewares.isNotAuthenticated, controllerDELETE.deletUserByID);
+
+router.get('/profile/data', middlewares.isNotAuthenticated, controllerGET.getUserData); 
+
 
 
 module.exports = router;

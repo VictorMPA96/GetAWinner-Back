@@ -53,8 +53,8 @@ exports.updateUser = async (req, res) => {
             request.updatedAt = new Date();
         }
     
-        const updatedUser = await Users.findByIdAndUpdate(req.params.id, request);
-        return res.status(200).json({oldUser: updatedUser});
+        const updatedUser = await Users.findByIdAndUpdate(req.params.id, request, {new: true});
+        return res.status(200).json({newUserData: updatedUser});
         
     } catch (error) {
         return res.sendStatus(500);

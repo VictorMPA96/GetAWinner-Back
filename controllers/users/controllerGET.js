@@ -13,9 +13,9 @@ exports.getAllUsers = async (req, res) => {
         }        
         
     } catch (error) {
+        
         return res.sendStatus(500);
     }
-
 }
 
 exports.getUserByID = async (req, res) => {
@@ -34,6 +34,17 @@ exports.getUserByID = async (req, res) => {
         }
 
         return res.status(401).send("ADMINS OR USER-OWNER ONLY");    
+        
+    } catch (error) {
+        return res.sendStatus(500);
+    }
+}
+
+exports.getUserData = async (req, res) => {
+
+    try{
+        const tokenParams = req.decoded;
+        return res.status(200).json({idUser: tokenParams.id});   
         
     } catch (error) {
         return res.sendStatus(500);
